@@ -10,6 +10,7 @@ import {
   HiIdentification,
   HiLockClosed,
   HiUserCircle,
+  HiUserGroup,
 } from "react-icons/hi"
 import { BiDumbbell } from "react-icons/bi"
 import { FaStickyNote } from "react-icons/fa"
@@ -36,15 +37,15 @@ const Navbar = () => {
 
   const menuOptions = [
     {
-      title: "Collections",
+      title: "Interviewees",
       action: () => {
         router.push("/collections")
       },
       active: true,
-      icon: <HiCollection />,
+      icon: <HiUserGroup />,
     },
     {
-      title: "Plans",
+      title: "Reviews",
       action: () => {
         router.push("/plans")
       },
@@ -52,17 +53,9 @@ const Navbar = () => {
       icon: <HiDocument />,
     },
     {
-      title: "Exercises",
-      action: () => {
-        router.push("/exercises")
-      },
-      active: true,
-      icon: <HiFolder />,
-    },
-    {
       title: "Settings",
       action: () => {
-        router.push("/profile")
+        router.push("/settings")
       },
       active: true,
       icon: <HiCog />,
@@ -79,7 +72,7 @@ const Navbar = () => {
   ]
 
   return (
-    <div className="fixed inset-x-0 top-0 flex h-12 items-center justify-between gap-x-4 dark:bg-slate-700 px-4">
+    <div className="fixed inset-x-0 top-0 flex h-12 items-center justify-between gap-x-4 px-4 dark:bg-slate-700">
       <div
         onClick={() => router.push("/")}
         className="flex cursor-pointer items-center justify-center"
@@ -90,7 +83,7 @@ const Navbar = () => {
       <div className="z-20 text-right">
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full items-center justify-center rounded-md bg-slate-300 dark:bg-slate-600 bg-opacity-20 px-3 py-1.5 text-sm font-mediumhover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+            <Menu.Button className="font-mediumhover:bg-opacity-30 inline-flex w-full items-center justify-center rounded-md bg-slate-400 bg-opacity-20 px-3 py-1.5 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 dark:bg-slate-600">
               <HiChevronDown className="mr-1 text-base" />
               Menu
             </Menu.Button>
@@ -104,7 +97,7 @@ const Navbar = () => {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Menu.Items className="absolute right-0 mt-2 origin-top-right rounded-md bg-slate-100 dark:bg-slate-600 shadow-lg focus:outline-none">
+            <Menu.Items className="absolute right-0 mt-2 origin-top-right rounded-md bg-slate-100 shadow-lg focus:outline-none dark:bg-slate-600">
               {menuOptions.map((option) => (
                 <div key={option.title} className="px-1 py-1 ">
                   <Menu.Item>
@@ -112,7 +105,7 @@ const Navbar = () => {
                       <button
                         onClick={() => option.action()}
                         className={`${
-                          active ? "text-slate-100 bg-soft-green " : ""
+                          active ? "bg-soft-green text-slate-100 " : ""
                         } group flex w-full items-center rounded-md px-2 py-1.5 text-sm`}
                       >
                         <span className="mr-2 text-sm">{option.icon}</span>
