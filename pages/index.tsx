@@ -32,6 +32,14 @@ const Home: NextPage = () => {
     getData()
   }, [])
 
+  console.log({
+    participant: new Date(participants[0]?.interviewAt).getTime(),
+    now: new Date(Date.now()).getTime(),
+    compare:
+      new Date(participants[0]?.interviewAt).getTime() -
+      new Date(Date.now()).getTime(),
+  })
+
   return (
     <Layout>
       <div className="h-full w-full overflow-y-auto px-4 py-2">
@@ -42,20 +50,28 @@ const Home: NextPage = () => {
           <Spinner />
         ) : (
           <div className="grid grid-cols-1 gap-y-3">
-            {participants.map((participant) => (
-              <div
-                key={participant.id}
-                className="rounded-md bg-slate-100 px-3 py-2 dark:bg-slate-700"
-              >
-                <p className="text-lg font-semibold">
-                  {participant.displayName}
-                </p>
-                <p className="-mt-1 text-sm">{participant.email}</p>
-                <p className="mt-3 text-xs font-semibold text-soft-green">
-                  {new Date(participant.interviewAt).toLocaleString("hu-HU")}
-                </p>
-              </div>
-            ))}
+            {participants
+              .filter(
+                (participant) =>
+                  new Date(participant.interviewAt).getTime() >
+                  new Date(Date.now()).getTime()
+              )
+              .map((participant) => (
+                <div
+                  key={participant.id}
+                  className="rounded-md bg-slate-100 px-3 py-2 dark:bg-slate-700"
+                >
+                  <p className="text-lg font-semibold">
+                    {participant.displayName}
+                  </p>
+                  <p className="-mt-1 text-sm font-light opacity-60">
+                    {participant.email}
+                  </p>
+                  <p className="mt-3 text-xs font-semibold text-soft-green">
+                    {new Date(participant.interviewAt).toLocaleString("hu-HU")}
+                  </p>
+                </div>
+              ))}
           </div>
         )}
       </div>

@@ -74,6 +74,7 @@ type InterviewParticipant = {
   email: string
   interviewAt: Date
   verdict: string | null
+  evaluation: InterviewEvaluation[]
 }
 
 /**

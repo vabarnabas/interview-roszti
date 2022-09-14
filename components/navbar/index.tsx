@@ -39,7 +39,7 @@ const Navbar = () => {
     {
       title: "Interviewees",
       action: () => {
-        router.push("/collections")
+        router.push("/interviewees")
       },
       active: true,
       icon: <HiUserGroup />,
