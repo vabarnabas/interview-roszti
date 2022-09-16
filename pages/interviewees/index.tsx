@@ -72,18 +72,31 @@ const Interviewees = () => {
               `}
                   key={participant.id}
                 >
-                  <div className="flex flex-col items-start justify-center text-base font-medium">
-                    <p className="text-lg font-semibold">
-                      {participant.displayName}
-                    </p>
-                    <p className="-mt-1 text-sm font-light opacity-60">
-                      {participant.email}
-                    </p>
-                    <p className="mt-3 text-xs font-semibold text-soft-green">
-                      {new Date(participant.interviewAt).toLocaleString(
-                        "hu-HU"
-                      )}
-                    </p>
+                  <div className="flex w-full items-center justify-between text-base font-medium">
+                    <div className="">
+                      <p className="text-lg font-semibold">
+                        {participant.displayName}
+                      </p>
+                      <p className="-mt-1 text-sm font-light opacity-60">
+                        {participant.email}
+                      </p>
+                      <p className="mt-3 text-xs font-semibold text-soft-green">
+                        {new Date(participant.interviewAt).toLocaleString(
+                          "hu-HU"
+                        )}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        router.push({
+                          pathname: "/interviewees/form",
+                          query: { id: participant.id },
+                        })
+                      }}
+                      className="flex w-max min-w-max items-center justify-center rounded-md px-3 py-1.5 text-sm text-soft-green outline-none hover:text-soft-green-dark hover:underline"
+                    >
+                      Edit
+                    </button>
                   </div>
                   {participant.evaluation.length !== 0 && (
                     <div className="mt-3 flex bg-soft-green text-white">

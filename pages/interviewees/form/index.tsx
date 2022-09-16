@@ -15,6 +15,30 @@ const IntervieweeForm = () => {
   const [error, setError] = useState("")
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
 
+  const { id } = router.query
+
+  useEffect(() => {
+    const getData = async () => {
+      const token = await tokenservice.getToken()
+      const data = await request<InterviewParticipant>("GET", {
+        baseUrl: process.env.NEXT_PUBLIC_API_URL || "",
+        path: `participants/${id}`,
+        token,
+      })
+      if (data && data.displayName && data.email && data.interviewAt) {
+        setDisplayName(data.displayName)
+        setEmail(data.email)
+        setInterviewAt(new Date(data.interviewAt).toISOString())
+      }
+    }
+
+    if (id && typeof id === "string") {
+      getData()
+    }
+  }, [id, router.isReady])
+
+  console.log(interviewAt)
+
   const onFormSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
     setError("")
