@@ -42,7 +42,7 @@ const Interviewees = () => {
               className="w-full rounded-md bg-slate-100 px-3 py-1.5 text-sm outline-none dark:bg-slate-700"
             />
             <button
-              onClick={() => router.push("/exercises/form")}
+              onClick={() => router.push("/interviewees/form")}
               className="flex w-max min-w-max items-center justify-center rounded-md bg-soft-green px-3 py-1.5 text-sm text-white outline-none hover:bg-soft-green-dark"
             >
               <HiPlusSm className="mr-1" />
